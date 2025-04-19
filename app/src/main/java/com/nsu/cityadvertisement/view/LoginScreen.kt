@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -35,7 +36,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.nsu.cityadvertisement.R
 import com.nsu.cityadvertisement.ui.theme.CityAdvertisementTheme
+
 
 
 @Composable
@@ -47,12 +55,28 @@ fun LoginScreen(paddingValues: PaddingValues) {
     var emailError by remember { mutableStateOf("") }
     var passwordError by remember { mutableStateOf("") }
 
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.login_animation))
+
+    val progress by  animateLottieCompositionAsState(
+        isPlaying = true,
+        composition = composition,
+        iterations = LottieConstants.IterateForever, speed = 0.7f
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(paddingValues),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        LottieAnimation(
+            modifier = Modifier
+                .size(300.dp)
+                .align(Alignment.CenterHorizontally),
+            composition = composition,
+            progress = {progress}
+        )
+
         Text(text = "Login", fontSize = 24.sp, fontWeight = FontWeight.ExtraBold);
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -140,14 +164,14 @@ fun LoginScreen(paddingValues: PaddingValues) {
 
         Text( text = "Forget password?",
             color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.clickable {
+            modifier = Modifier.clickable {//handle forgot passwd logic
             })
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Text( text = "Not with us? Sign Up",
             color = MaterialTheme.colorScheme.primary,
-            modifier =  Modifier.clickable {
+            modifier =  Modifier.clickable {//handle sign up logic
             })
     }
 
