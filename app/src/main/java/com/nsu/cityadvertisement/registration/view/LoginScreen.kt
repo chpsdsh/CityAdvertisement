@@ -37,6 +37,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
@@ -48,7 +49,7 @@ import com.nsu.cityadvertisement.ui.theme.CityAdvertisementTheme
 
 
 @Composable
-fun LoginScreen(paddingValues: PaddingValues) {
+fun LoginScreen(navController: NavController,  paddingValues: PaddingValues) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
@@ -178,18 +179,19 @@ fun LoginScreen(paddingValues: PaddingValues) {
 
         Text( text = "Not with us? Sign Up",
             color = MaterialTheme.colorScheme.primary,
-            modifier =  Modifier.clickable {//handle sign up logic
+            modifier =  Modifier.clickable {
+                navController.navigate("register")
             })
     }
 
 }
 
-@Preview
-@Composable
-fun PreviewLoginScreen() {
-    CityAdvertisementTheme {
-        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-            LoginScreen(paddingValues = innerPadding)
-        }
-    }
-}
+//@Preview
+//@Composable
+//fun PreviewLoginScreen() {
+//    CityAdvertisementTheme {
+//        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+//            LoginScreen(paddingValues = innerPadding)
+//        }
+//    }
+//}
