@@ -1,5 +1,6 @@
 package com.nsu.cityadvertisement.ui.theme.view
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -8,11 +9,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.rounded.AccountCircle
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material.icons.rounded.Lock
+import androidx.compose.material3.Icon
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -24,6 +26,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 
 
 @Composable
@@ -61,8 +69,54 @@ fun LoginScreen(paddingValues: PaddingValues) {
                 )
             },
             shape = RoundedCornerShape(8.dp),
-            modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp,horizontal = 20.dp),
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            )
         )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        TextField(
+            value = password,
+            onValueChange = { password = it },
+            label = {
+                Text(
+                    text = if (passwordError.isNotEmpty()) passwordError else "Password",
+                    color = if (emailError.isNotEmpty()) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface
+                )
+            },
+            leadingIcon = {
+                Icon(
+                    Icons.Rounded.Lock,
+                    contentDescription = ""
+                )
+            },
+            visualTransformation = if(passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                val image = if (passwordVisible)
+                    Icons.Filled.Visibility
+                else Icons.Filled.VisibilityOff
+
+                Icon(
+                    imageVector = image,
+                    contentDescription = null,
+                    modifier = Modifier.clickable { passwordVisible = !passwordVisible }
+                )
+
+            },
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp, horizontal = 20.dp),
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            )
+        )
+
     }
 
 }
