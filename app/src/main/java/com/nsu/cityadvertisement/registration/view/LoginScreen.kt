@@ -173,6 +173,8 @@ fun LoginScreen(navController: NavController,  paddingValues: PaddingValues) {
         Text( text = "Forget password?",
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.clickable {//handle forgot passwd logic
+                navController.navigate("forgot")
+
             })
 
         Spacer(modifier = Modifier.height(16.dp))

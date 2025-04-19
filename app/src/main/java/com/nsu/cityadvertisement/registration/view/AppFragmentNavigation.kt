@@ -14,7 +14,7 @@ fun AppNavigator(paddingValues: PaddingValues) {
     NavHost(navController, startDestination = "login") {
         composable("login") { LoginScreen(navController, paddingValues) }
         composable("register") { RegistrationScreen(navController, paddingValues) }
-
+        composable("forgot") { ForgetPasswordScreen(navController, paddingValues) }
     }
 
 }

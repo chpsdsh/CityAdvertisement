@@ -45,7 +45,7 @@ fun ForgetPasswordScreen(navController: NavController, paddingValues: PaddingVal
     var email by remember { mutableStateOf("") }
     var emailError by remember { mutableStateOf("") }
 
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.register_animation))
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.forgot_password))
     val progress by animateLottieCompositionAsState(
         isPlaying = true,
         composition = composition,
