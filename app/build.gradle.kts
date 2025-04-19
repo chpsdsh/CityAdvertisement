@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.nsu.cityadvertisement"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.nsu.cityadvertisement"
