@@ -28,10 +28,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
+import com.nsu.cityadvertisement.ui.theme.CityAdvertisementTheme
 
 
 @Composable
@@ -117,6 +120,27 @@ fun LoginScreen(paddingValues: PaddingValues) {
             )
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text( text = "Forget password?",
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.clickable { //some logic
+            })
+
+
+
+
+
     }
 
+}
+
+@Preview
+@Composable
+fun PreviewLoginScreen() {
+    CityAdvertisementTheme {
+        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+            LoginScreen(paddingValues = innerPadding)
+        }
+    }
 }
