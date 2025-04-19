@@ -140,14 +140,14 @@ fun LoginScreen(paddingValues: PaddingValues) {
 
         Text( text = "Forget password?",
             color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.clickable { //some logic
+            modifier = Modifier.clickable {
             })
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Text( text = "Not with us? Sign Up",
             color = MaterialTheme.colorScheme.primary,
-            modifier =  Modifier.clickable { //some registration logic
+            modifier =  Modifier.clickable {
             })
     }
 
