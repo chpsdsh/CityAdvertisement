@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -63,13 +64,14 @@ fun LoginScreen(paddingValues: PaddingValues) {
             label = {
                 Text(
                     text = if (emailError.isNotEmpty()) emailError else "Email",
-                    color = if (emailError.isNotEmpty()) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface
+                    color = if (emailError.isNotEmpty()) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onPrimaryContainer
                 )
             },
             leadingIcon = {
                 Icon(
                     Icons.Rounded.AccountCircle,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = MaterialTheme.colorScheme.primary
                 )
             },
             shape = RoundedCornerShape(8.dp),
@@ -77,8 +79,8 @@ fun LoginScreen(paddingValues: PaddingValues) {
                 .fillMaxWidth()
                 .padding(vertical = 4.dp,horizontal = 20.dp),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
+                focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
             )
         )
         Spacer(modifier = Modifier.height(16.dp))
@@ -95,7 +97,8 @@ fun LoginScreen(paddingValues: PaddingValues) {
             leadingIcon = {
                 Icon(
                     Icons.Rounded.Lock,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = MaterialTheme.colorScheme.primary
                 )
             },
             visualTransformation = if(passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
@@ -116,14 +119,18 @@ fun LoginScreen(paddingValues: PaddingValues) {
                 .fillMaxWidth()
                 .padding(vertical = 4.dp, horizontal = 20.dp),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
+                focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
             )
         )
 
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(
+            colors = ButtonColors(MaterialTheme.colorScheme.onSurfaceVariant,
+                MaterialTheme.colorScheme.onPrimary,
+                MaterialTheme.colorScheme.inverseOnSurface ,
+                MaterialTheme.colorScheme.inversePrimary),
             onClick = {
                 emailError = if (email.isBlank()) "Email is required" else ""
                 passwordError = if (password.isBlank()) "Password is required" else ""
