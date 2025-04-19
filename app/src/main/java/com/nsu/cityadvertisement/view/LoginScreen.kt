@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material.icons.rounded.Lock
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -120,6 +121,21 @@ fun LoginScreen(paddingValues: PaddingValues) {
             )
         )
 
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Button(
+            onClick = {
+                emailError = if (email.isBlank()) "Email is required" else ""
+                passwordError = if (password.isBlank()) "Password is required" else ""
+                if (email.isEmpty() && password.isEmpty()){
+                    //login logic
+                }
+            },
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 90.dp)
+        ) {
+            Text( text = "Login")
+        }
+
         Spacer(modifier = Modifier.height(16.dp))
 
         Text( text = "Forget password?",
@@ -127,10 +143,12 @@ fun LoginScreen(paddingValues: PaddingValues) {
             modifier = Modifier.clickable { //some logic
             })
 
+        Spacer(modifier = Modifier.height(16.dp))
 
-
-
-
+        Text( text = "Not with us? Sign Up",
+            color = MaterialTheme.colorScheme.primary,
+            modifier =  Modifier.clickable { //some registration logic
+            })
     }
 
 }
