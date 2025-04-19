@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.nsu.cityadvertisement.ui.theme.CityAdvertisementTheme
-import com.nsu.cityadvertisement.view.LoginScreen
+import com.nsu.cityadvertisement.registration.view.AppNavigator
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,25 +16,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             CityAdvertisementTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LoginScreen(paddingValues = innerPadding)
+                 AppNavigator(paddingValues = innerPadding)
                 }
             }
         }
     }
 }
 
-//@Composable
-//fun Greeting(name: String, modifier: Modifier = Modifier) {
-//    Text(
-//        text = "Hello asdasd!",
-//        modifier = modifier
-//    )
-//}
-//
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//    CityAdvertisementTheme {
-//        Greeting("Android")
-//    }
-//}
