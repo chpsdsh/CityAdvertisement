@@ -1,4 +1,4 @@
-package com.nsu.cityadvertisement.ui.theme.view
+package com.nsu.cityadvertisement.view
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
