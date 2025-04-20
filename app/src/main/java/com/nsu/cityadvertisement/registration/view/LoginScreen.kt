@@ -38,6 +38,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
@@ -135,7 +136,8 @@ fun LoginScreen(navController: NavController,  paddingValues: PaddingValues) {
                 Icon(
                     imageVector = image,
                     contentDescription = null,
-                    modifier = Modifier.clickable { passwordVisible = !passwordVisible }
+                    modifier = Modifier.clickable { passwordVisible = !passwordVisible },
+                    tint = MaterialTheme.colorScheme.primary
                 )
 
             },
@@ -188,12 +190,13 @@ fun LoginScreen(navController: NavController,  paddingValues: PaddingValues) {
 
 }
 
-//@Preview
-//@Composable
-//fun PreviewLoginScreen() {
-//    CityAdvertisementTheme {
-//        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//            LoginScreen(paddingValues = innerPadding)
-//        }
-//    }
-//}
+@Preview
+@Composable
+fun PreviewLoginScreen() {
+    CityAdvertisementTheme {
+        val navController = rememberNavController();
+        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+            LoginScreen(navController, paddingValues = innerPadding)
+       }
+    }
+}
