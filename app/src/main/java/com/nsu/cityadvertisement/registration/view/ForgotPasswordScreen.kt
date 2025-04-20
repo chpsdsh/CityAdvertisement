@@ -14,8 +14,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -29,15 +31,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.nsu.cityadvertisement.R
+import com.nsu.cityadvertisement.ui.theme.CityAdvertisementTheme
 
 @Composable
 fun ForgetPasswordScreen(navController: NavController, paddingValues: PaddingValues) {
@@ -87,7 +92,8 @@ fun ForgetPasswordScreen(navController: NavController, paddingValues: PaddingVal
             },
             leadingIcon = {
                 Icon(
-                    Icons.Rounded.AccountCircle, contentDescription = ""
+                    Icons.Rounded.AccountCircle, contentDescription = "",
+                    tint = MaterialTheme.colorScheme.primary
                 )
             },
             shape = RoundedCornerShape(8.dp),
@@ -95,13 +101,17 @@ fun ForgetPasswordScreen(navController: NavController, paddingValues: PaddingVal
                 .fillMaxWidth()
                 .padding(vertical = 4.dp, horizontal = 20.dp),
             colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
+                focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
             )
         )
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
         Button(
+            colors = ButtonColors(MaterialTheme.colorScheme.onSurfaceVariant,
+                MaterialTheme.colorScheme.onPrimary,
+                MaterialTheme.colorScheme.inverseOnSurface ,
+                MaterialTheme.colorScheme.inversePrimary),
             onClick = {
                 emailError = if (email.isBlank()) "Email is required"
                 else if (!Patterns.EMAIL_ADDRESS.matcher(email)
@@ -113,8 +123,11 @@ fun ForgetPasswordScreen(navController: NavController, paddingValues: PaddingVal
                 .fillMaxWidth()
                 .padding(horizontal = 90.dp)
         ) {
-            Text(text = "Send verification message")
+            Text(text = "Send verification message",
+                textAlign = TextAlign.Center)
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         Text(text = "Back to login",
             color = MaterialTheme.colorScheme.primary,
@@ -124,4 +137,15 @@ fun ForgetPasswordScreen(navController: NavController, paddingValues: PaddingVal
 
     }
 
+}
+
+@Preview
+@Composable
+fun ForgetPasswordPreview(){
+    CityAdvertisementTheme {
+        val navController = rememberNavController();
+        Scaffold(modifier = Modifier.fillMaxSize()) { innerpadding ->
+            ForgetPasswordScreen(navController, paddingValues = innerpadding)
+        }
+    }
 }
