@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -18,6 +19,7 @@ import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -121,7 +123,8 @@ fun RegistrationScreen(navController: NavController, paddingValues: PaddingValue
             },
             leadingIcon = {
                 Icon(
-                    Icons.Rounded.Person, contentDescription = ""
+                    Icons.Rounded.Person, contentDescription = "",
+                    tint = MaterialTheme.colorScheme.primary
                 )
             },
             shape = RoundedCornerShape(8.dp),
@@ -129,8 +132,8 @@ fun RegistrationScreen(navController: NavController, paddingValues: PaddingValue
                 .fillMaxWidth()
                 .padding(vertical = 4.dp, horizontal = 20.dp),
             colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
+                focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
             )
         )
         Spacer(modifier = Modifier.height(10.dp))
@@ -145,7 +148,8 @@ fun RegistrationScreen(navController: NavController, paddingValues: PaddingValue
             },
             leadingIcon = {
                 Icon(
-                    Icons.Rounded.Person, contentDescription = ""
+                    Icons.Rounded.Person, contentDescription = "",
+                    tint = MaterialTheme.colorScheme.primary
                 )
             },
             shape = RoundedCornerShape(8.dp),
@@ -153,8 +157,8 @@ fun RegistrationScreen(navController: NavController, paddingValues: PaddingValue
                 .fillMaxWidth()
                 .padding(vertical = 4.dp, horizontal = 20.dp),
             colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
+                focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
             )
         )
         Spacer(modifier = Modifier.height(16.dp))
@@ -170,7 +174,8 @@ fun RegistrationScreen(navController: NavController, paddingValues: PaddingValue
             leadingIcon = {
                 Icon(
                     Icons.Rounded.AccountCircle,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = MaterialTheme.colorScheme.primary
                 )
             },
             shape = RoundedCornerShape(8.dp),
@@ -178,8 +183,8 @@ fun RegistrationScreen(navController: NavController, paddingValues: PaddingValue
                 .fillMaxWidth()
                 .padding(vertical = 4.dp, horizontal = 20.dp),
             colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
+                focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
             )
         )
         Spacer(modifier = Modifier.height(10.dp))
@@ -196,7 +201,8 @@ fun RegistrationScreen(navController: NavController, paddingValues: PaddingValue
             leadingIcon = {
                 Icon(
                     Icons.Rounded.Lock,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = MaterialTheme.colorScheme.primary
                 )
             },
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
@@ -208,7 +214,8 @@ fun RegistrationScreen(navController: NavController, paddingValues: PaddingValue
                 Icon(
                     imageVector = image,
                     contentDescription = null,
-                    modifier = Modifier.clickable { passwordVisible = !passwordVisible }
+                    modifier = Modifier.clickable { passwordVisible = !passwordVisible },
+                    tint = MaterialTheme.colorScheme.primary
                 )
 
             },
@@ -217,8 +224,8 @@ fun RegistrationScreen(navController: NavController, paddingValues: PaddingValue
                 .fillMaxWidth()
                 .padding(vertical = 4.dp, horizontal = 20.dp),
             colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
+                focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
             )
         )
 
@@ -236,7 +243,8 @@ fun RegistrationScreen(navController: NavController, paddingValues: PaddingValue
             leadingIcon = {
                 Icon(
                     Icons.Rounded.Lock,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint = MaterialTheme.colorScheme.primary
                 )
             },
             visualTransformation = if (confirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
@@ -248,7 +256,8 @@ fun RegistrationScreen(navController: NavController, paddingValues: PaddingValue
                 Icon(
                     imageVector = image,
                     contentDescription = null,
-                    modifier = Modifier.clickable { confirmPasswordVisible = !confirmPasswordVisible }
+                    modifier = Modifier.clickable { confirmPasswordVisible = !confirmPasswordVisible },
+                    tint = MaterialTheme.colorScheme.primary
                 )
 
             },
@@ -257,14 +266,18 @@ fun RegistrationScreen(navController: NavController, paddingValues: PaddingValue
                 .fillMaxWidth()
                 .padding(vertical = 4.dp, horizontal = 20.dp),
             colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent
+                focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
             )
         )
 
         Spacer(modifier = Modifier.height(10.dp))
 
         Button(
+            colors = ButtonColors(MaterialTheme.colorScheme.onSurfaceVariant,
+                MaterialTheme.colorScheme.onPrimary,
+                MaterialTheme.colorScheme.inverseOnSurface ,
+                MaterialTheme.colorScheme.inversePrimary),
             onClick = {
                 nameError = if (name.isBlank()) "Name is required" else ""
                 surnameError = if (surname.isBlank()) "Surname is required" else ""
